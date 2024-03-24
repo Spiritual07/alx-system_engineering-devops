@@ -2,7 +2,7 @@
 # Bash script that creates an RSA key pair.
 
 # Define passphrase
-passphrase = "betty"
+passphrase="betty"
 
 # Generate RSA key pair
 ssh-keygen -b 4096 -f school -N "$passphrase"
