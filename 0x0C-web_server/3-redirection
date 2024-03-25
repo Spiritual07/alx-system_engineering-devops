@@ -12,7 +12,7 @@ sudo apt-get -y install nginx
 echo 'Hello World!' | sudo tee /var/www/html/index.html
 
 # Create a new configuration file for redirection
-redirection_conf="\\\trewrite ^/redirect_me http://spiritualtechsolutions.tech permanent;"
+redirection_conf="\\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
 sudo sed -i "24i $redirection_conf" /etc/nginx/sites-available/default
 
 # Reload Nginx configuration
