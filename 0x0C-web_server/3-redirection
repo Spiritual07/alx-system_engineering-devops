@@ -16,4 +16,4 @@ redirection_conf="\\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-
 sudo sed -i "24i $redirection_conf" /etc/nginx/sites-available/default
 
 # Reload Nginx configuration
-sudo service nginx reload
+sudo service nginx restart
