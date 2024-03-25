@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Configure a new Nginx server so that /redirect_me is redirecting to another page.
+# The redirection must be a “301 Moved Permanently”
+
+# # Update package lists
+sudo apt-get -y update && sudo apt-get -y upgrade
+
+# Install Nginx
+sudo apt-get -y install nginx
+
+# Configure Nginx
+echo 'Hello World!' | sudo tee /var/www/html/index.html
+
+# Create a new configuration file for redirection
+redirection_conf="\\\trewrite ^/redirect_me http://spiritualtechsolutions.tech permanent;"
+sudo sed -i "19i $redirection_conf" /etc/nginx/sites-available/default
+
+# Reload Nginx configuration
+sudo service nginx reload
