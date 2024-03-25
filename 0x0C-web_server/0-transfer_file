@@ -13,10 +13,10 @@ if [ "$#" -lt 4 ]; then
 fi
 
 # assign parameteres
-PATH_TO_FILE="#1"
-IP="#2"
-USERNAME="#3"
-PATH_TO_SSH_KEY="#4"
+PATH_TO_FILE="$1"
+IP="$2"
+USERNAME="$3"
+PATH_TO_SSH_KEY="$4"
 
 # Transfer file using scp
 scp -o StrictHostKeyChecking=no -i "$PATH_TO_SSH_KEY" "$PATH_TO_FILE" "$USERNAME"@"$IP":~/
