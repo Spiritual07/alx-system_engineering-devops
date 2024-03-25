@@ -13,7 +13,7 @@ echo 'Hello World!' | sudo tee /var/www/html/index.html
 
 # Create a new configuration file for redirection
 redirection_conf="\\\trewrite ^/redirect_me http://spiritualtechsolutions.tech permanent;"
-sudo sed -i "19i $redirection_conf" /etc/nginx/sites-available/default
+sudo sed -i "24i $redirection_conf" /etc/nginx/sites-available/default
 
 # Reload Nginx configuration
 sudo service nginx reload
