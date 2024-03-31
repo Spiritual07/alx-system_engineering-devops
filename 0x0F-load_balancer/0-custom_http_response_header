@@ -19,7 +19,7 @@ echo "Ceci n'est pas une page" | sudo tee /var/www/html/error_404.html
 error_string="\\\terror_page 404 /error_404.html;\n\tlocation = /error_404.html {\n\t\troot /var/www/html;\n\t\tinternal;\n\t}"
 
 # Add custom HTTP header to Nginx response
-custom_header="\\\tadd_header X-Served-By \\\$hostname;"
+custom_header="\\\tadd_header X-Served-By \\\$HOSTNAME;"
 sudo sed -i "25i $custom_header" /etc/nginx/sites-available/default
 
 # Reload Nginx configuration
