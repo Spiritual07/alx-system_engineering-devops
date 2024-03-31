@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Nginx configuration of web-02 web server with a custom http header
 
 # Update package lists
 sudo apt-get -y update && sudo apt-get -y upgrade
