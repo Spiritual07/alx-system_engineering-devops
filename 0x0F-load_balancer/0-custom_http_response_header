@@ -23,5 +23,5 @@ custom_header="\\\tadd_header X-Served-By \\\$hostname;"
 sudo sed -i "25i $custom_header" /etc/nginx/sites-available/default
 
 # Reload Nginx configuration
-sudo service nginx restart
+sudo service nginx start
 
