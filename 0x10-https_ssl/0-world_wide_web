@@ -3,7 +3,7 @@
 
 find_domain() {
     # Check for a valid domain
-    SUBDOMAINS=("www"  "lb-01" "web-01" "web-02")
+    SUBDOMAINS=("www" "lb-01" "web-01" "web-02")
 
 	# check if only domain is provided and loop through predefined subdomains
     if [ -z "$2" ]; then
