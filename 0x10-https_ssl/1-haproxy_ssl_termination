@@ -33,21 +33,19 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-frontend load_balancer
+frontend http
         bind *:80
-        bind :443 ssl crt /etc/letsencrypt/live/www.spiritualtechsolutions.tech/spiritualtechsolutions.pem
-		acl letsencrypt-acl path_beg /.well-known/acme-challenge/
-    	mode http
-		use_backend letsencrypt-backend if letsencrypt-acl
-    	redirect scheme https if !{ ssl_fc }
+        http-request set-header X-Forwarded-Proto http
         default_backend web-backend
-    
+
+frontend www-https
+        bind *:443 ssl crt /etc/haproxy/ssl/www.spiritualtechsolutions.tech.pem
+        http-request set-header X-Forwarded-Proto https
+        default_backend web-backend
+
 backend web-backend
         balance roundrobin
-		redirect scheme https code 301 if !{ ssl_fc }
-        server 490902-web-01 107.23.58.213:80 check
-        server 490902-web-02 54.198.48.244:80 check
-
-backend letsencrypt-backend
-		server letsencrypt 127.0.0.1:54321
+        redirect scheme https if !{ ssl_fc }
+        server 938-web-01 107.23.58.213:80 check
+        server 938-web-02 54.198.48.244:80 check
 
