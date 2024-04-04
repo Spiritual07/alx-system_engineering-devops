@@ -8,11 +8,11 @@ find_domain() {
 	# check if only domain is provided and loop through predefined subdomains
     if [ -z "$2" ]; then
 		for i in "${SUBDOMAINS[@]}"; do
-	    	dig "$i.$1" | grep -A1 'ANSWER SECTION:' | tail -n1 | awk '{split($0, SUBDOMAIN, "."); print "The subdomain" SUBDOMAIN[1] " is a " $4 " record and points to " $5}'
+	    	dig "$i.$1" | grep -A1 'ANSWER SECTION:' | tail -n1 | awk '{split($0, SUBDOMAIN, "."); print "The subdomain "SUBDOMAIN[1]" is a "$4" record and points to " $5}'
 		done
     else
 	# If both domain and subdomain are provided, display information for that subdomain
-		dig "$2.$1" | grep -A1 'ANSWER SECTION:' | tail -n1 | awk '{split($0, SUBDOMAIN, "."); print "The subdomain" SUBDOMAIN[1] " is a " $4 " record and points to " $5}'
+		dig "$2.$1" | grep -A1 'ANSWER SECTION:' | tail -n1 | awk '{split($0, SUBDOMAIN, "."); print "The subdomain "SUBDOMAIN[1]" is a "$4" record and points to " $5}'
     fi
 }
 
