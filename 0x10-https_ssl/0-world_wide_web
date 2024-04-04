@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Ignore shellcheck case SC2086
 # Information about server domains
 
 find_domain() {
