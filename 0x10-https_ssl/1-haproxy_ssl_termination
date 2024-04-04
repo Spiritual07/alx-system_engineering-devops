@@ -7,6 +7,12 @@ global
         user haproxy
         group haproxy
         daemon
+		log                     127.0.0.1       local3  warning
+
+        pidfile                 /var/run/haproxy.pid
+
+
+        stats socket            /etc/haproxy/stats
 
 		tune.ssl.default-dh-param 2048
 
