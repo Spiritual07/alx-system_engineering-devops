@@ -7,14 +7,13 @@ global
         user haproxy
         group haproxy
         daemon
-		log                     127.0.0.1       local3  warning
+        log                     127.0.0.1       local3  warning
 
         pidfile                 /var/run/haproxy.pid
 
-
         stats socket            /etc/haproxy/stats
 
-		tune.ssl.default-dh-param 2048
+        tune.ssl.default-dh-param 2048
 
         # Default SSL material locations
         ca-base /etc/ssl/certs
@@ -41,20 +40,18 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-frontend http_frontend               
-        bind *:80                
-        bind :443 ssl crt /etc/letsencrypt/live/spiritualtechsolutions.tech/fullchain.pem               
-        acl letsencrypt-acl path_beg /.well-known/acme-challenge/               
-        redirect scheme https if !{ ssl_fc }               
-        use_backend letsencrypt-backend if letsencrypt-acl                
+frontend http_frontend
+        bind *:80
+        bind *:443 ssl crt /etc/haproxy/certs/spiritualtechsolutions.tech.pem
+        acl letsencrypt-acl path_beg /.well-known/acme-challenge/
+        redirect scheme https code 301 if !{ ssl_fc }
+        use_backend letsencrypt-backend if letsencrypt-acl
         default_backend web_backend
 
-backend web-backend
+backend web_backend
         balance roundrobin
-        redirect scheme https if !{ ssl_fc }
         server 490902-web-01 107.23.58.213:80 check
         server 490902-web-02 54.198.48.244:80 check
 
-backend letsencrypt-backend              
+backend letsencrypt-backend
         server letsencrypt 127.0.0.1:54321
-
