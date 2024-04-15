@@ -1,0 +1,26 @@
+# Firewalls can not only filter requests, they can also forward them.
+
+# Requirements:
+
+# Configure web-01 so that its firewall redirects port 8080/TCP to port 80/TCP.
+
+# enable IP-FORWARDING
+# Before setting up port forwarding, ensure that IP forwarding is enabled. Edit the /etc/ufw/sysctl.conf file and uncomment or ad# d the following line to enable IP forwarding:
+
+net.ipv4.ip_forward=1
+
+# Save and close the file, then apply the changes by running:
+
+sudo sysctl -p
+
+# Set up Port Forwarding using iptables
+
+sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 8080 -j REDIRECT --to-port 80
+
+# Save iptables Rules
+
+sudo iptables-save > /etc/iptables/rules.v4
+
+# Verify Port Forwarding
+
+sudo iptables -t nat -L
