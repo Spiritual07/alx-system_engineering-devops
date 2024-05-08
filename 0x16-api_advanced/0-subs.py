@@ -15,7 +15,7 @@ def number_of_subscribers(subreddit):
     if subreddit is None or not isinstance(subreddit, str):
         return 0
 
-    user_agent = {'User-agent': 'Custom'}
+    user_agent = {'User-agent': 'api_advanced-project'}
     url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
     response = requests.get(url, headers=user_agent, allow_redirects=False)
     results = response.json()
